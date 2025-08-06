@@ -1,11 +1,9 @@
-Capstone Project Guidelines
+React Capstone Guidelines
 ===========================
 
 ### What You'll Build
 
 You will create a **full-stack React product application**. The Figma design and user stories are provided. Your job is to build the backend, connect the frontend, and deliver a working, deployed product.
-
-* * * * *
 
 Step 1: Review the Provided Materials
 -----------------------------
@@ -15,8 +13,6 @@ Step 1: Review the Provided Materials
 
 -   **User Stories/PRD:**\
     Clearly defines your product's features and the main user journeys.
-
-* * * * *
 
 Step 2: Build the Backend
 -------------------------
@@ -29,8 +25,6 @@ Step 2: Build the Backend
 
 -   **Test Each Endpoint:**\
     Make sure every API route works as intended before connecting to the frontend.
-
-* * * * *
 
 Step 3: Build the React Frontend
 --------------------------------
@@ -50,8 +44,6 @@ Step 3: Build the React Frontend
 -   **Component Testing:**\
     Write tests for at least four different UI components.
 
-* * * * *
-
 Step 4: Deploy Your Application
 -------------------------------
 
@@ -60,8 +52,6 @@ Step 4: Deploy Your Application
 
 -   **Submit a Working URL:**\
     Make sure your deployed app is accessible and all main features work.
-
-* * * * *
 
 Must-Have Checklist
 -------------------
@@ -80,16 +70,12 @@ Must-Have Checklist
 
 -   Deployed, working app with public URL
 
-* * * * *
-
 Stretch Goals: <br> _complete 1 to achieve silver status and 2 for gold_
 ------------------------
 
 -   Add Playwright end-to-end tests
 
 -   Set up Github Actions or other CI/CD for automated builds and tests
-
-* * * * *
 
 Resources & Support
 -------------------
@@ -100,8 +86,6 @@ Resources & Support
 
 -   1:1 support available - ask an instructor if you're stuck for more than 30 minutes
 
-* * * * *
-
 Tips for Success
 ----------------
 
@@ -110,8 +94,6 @@ Tips for Success
 -   **Stick to the blueprint:** The Figma file and user stories define your target.
 
 -   **Ask questions:** Don't spend too long blocked. Help is here if you need it!
-
-* * * * *
 
 ### Deliverables
 
