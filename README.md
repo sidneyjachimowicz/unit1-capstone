@@ -55,6 +55,7 @@ Step 4: Deploy Your Application
 
 Must-Have Checklist
 -------------------
+>🥉 Bronze - complete all must-haves
 
 -   Backend supports full CRUD, all endpoints in use
 
@@ -70,8 +71,9 @@ Must-Have Checklist
 
 -   Deployed, working app with public URL
 
-Stretch Goals: <br> _complete 1 to achieve silver status and 2 for gold_
+Stretch Goals:
 ------------------------
+>🥈 Silver - complete 1 stretch goal <br> 🥇 Gold - complete 2
 
 -   Add Playwright end-to-end tests
 
