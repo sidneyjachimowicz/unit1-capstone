@@ -1,4 +1,4 @@
-React Capstone Guidelines
+Week 1 Capstone: React Application
 ===========================
 
 ### What You'll Build
