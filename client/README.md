@@ -1,69 +1,45 @@
-# React + TypeScript + Vite
+# Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This directory contains the client-side code for the Spoonful application.
 
-Currently, two official plugins are available:
+## Commands
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Running the Development Server
 
-## Expanding the ESLint configuration
+To start the development server, run the following command. This will build the Docker image and start the container in detached mode.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+docker-compose up --build -d
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**When to use:** Use this command to start the client-side development server.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Stopping the Development Server
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+To stop the development server, run the following command:
+
+```bash
+docker-compose down
 ```
+
+**When to use:** Use this command when you want to stop the running development server.
+
+### Running Tests
+
+To run the test suite, use the following command:
+
+```bash
+docker-compose run --rm react-dev npm run test
+```
+
+**When to use:** Use this command to execute the unit and integration tests for the client application. The `--rm` flag will remove the container after the tests have run.
+
+### Building for Production
+
+To create a production build of the application, run the following command:
+
+```bash
+docker-compose run --rm react-dev npm run build
+```
+
+**When to use:** Use this command to bundle the application for deployment. The build artifacts will be located in the `dist` directory.
