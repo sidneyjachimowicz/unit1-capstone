@@ -1,110 +1,123 @@
-Week 1 Capstone: React Application
-===========================
+# Unit 3 Capstone: Building an Intelligent Document Search Pipeline
 
-### What You'll Build
+### Project Overview
 
-You will create a **full-stack React product application**. The Figma design and user stories are provided. Your job is to build the backend, connect the frontend, and deliver a working, deployed product.
+In this capstone, you'll design and build a real-world intelligent document search system using AWS. Your pipeline will automate document ingestion, ETL, vectorization, structured data storage, and setup for future Retrieval-Augmented Generation (RAG) workflows.
 
-Step 1: Review the Provided Materials
------------------------------
+**You'll deliver a working pipeline that processes both unstructured (PDF) and structured (CSV, JSON) files, making them searchable and ready for analytics.**
 
--   **Figma File:**\
-    Your source of truth for UI. Aim for a pixel-perfect implementation of the design (8-10 components).
+---
 
--   **User Stories/PRD:**\
-    Clearly defines your product's features and the main user journeys.
+## Step 1: Review Your Materials
 
-Step 2: Build the Backend
--------------------------
+- **Understand your reference architecture** and data flow (diagram will be provided in class).
 
--   **Implement CRUD Operations:**\
-    Build Create, Read, Update, and Delete endpoints for all product data described in the user stories.
+- Review AWS service documentation and code/lab samples provided in the course.
 
--   **Use the Recommended Stack:**\
-    Follow the technologies and practices taught in the course.
+## Step 2: Build the Required AWS Data Flow & Infrastructure
 
--   **Test Each Endpoint:**\
-    Make sure every API route works as intended before connecting to the frontend.
+#### **Must-Have Features:**
 
-Step 3: Build the React Frontend
---------------------------------
+- **Central Storage:**
+  - Use **S3** as the main repository for all incoming documents (PDFs, CSVs, JSON).
 
--   **Connect to Your Backend:**\
-    Your React app must call and use all the API endpoints you've built.
+- **Automated Ingestion & Processing:**
+  - Uploads to S3 automatically trigger **AWS Lambda** functions.
 
--   **Set Up Routing:**\
-    Implement routing for navigation between all major app sections/components.
+  - For PDFs: Lambda uses **Amazon Textract** to extract text, intelligently chunks the text (500-1000 tokens), and generates embeddings via **Amazon Bedrock's Llama models**.
 
--   **Responsive Design:**\
-    Use CSS and Flexbox so your app looks good on mobile, tablet, and desktop.
+  - Store raw extracted text in **AWS RDS** for structured querying.
 
--   **Match the Figma Design:**\
-    Strive for a pixel-perfect implementation of the provided UI.
+  - Store vector embeddings in **OpenSearch** for semantic search.
 
--   **Component Testing:**\
-    Write tests for at least four different UI components.
+- **ETL for Structured Data:**
+  - Use **AWS Glue Crawler** to automatically catalog and discover schemas in all ingested files.
 
-Step 4: Deploy Your Application
--------------------------------
+  - Use **AWS Glue Transform** to run ETL jobs for:
+    - Data normalization
 
--   **Deploy to S3 (or as instructed):**\
-    Follow course guidance to publish your app.
+    - Schema validation
 
--   **Submit a Working URL:**\
-    Make sure your deployed app is accessible and all main features work.
+    - Systematic loading of CSV/JSON into **Redshift** tables
 
-Must-Have Checklist
--------------------
->🥉 Bronze - complete all must-haves
+    - Populate Redshift with both structured data and vector embeddings
 
--   Backend supports full CRUD, all endpoints in use
+- **Unified Data Warehouse:**
+  - **AWS Redshift** acts as your consolidated warehouse for SQL-queryable data and vector embeddings.
 
--   React app calls all endpoints
+- **Visualization & BI:**
+  - Connect **AWS QuickSight** to Redshift to build analytics dashboards.
 
--   Routing set up for major components
+- **Automation, Security & Control:**
+  - Use **Lambda** for workflow automation and event handling.
 
--   Responsive CSS/Flexbox design
+  - Use **BOTO3** for scripting and programmatic control.
 
--   Pixel-perfect Figma implementation
+  - Apply **IAM** best practices for security and permissions.
 
--   Four or more tested React components
+## Step 3: Test and Document
 
--   Deployed, working app with public URL
+- Test your pipeline end-to-end by uploading PDFs and structured files and validating data flow to RDS, OpenSearch, and Redshift.
 
-Stretch Goals:
-------------------------
->🥈 Silver - complete 1 stretch goal <br> 🥇 Gold - complete 2
+- Document your architecture, how each service is used, and how to test or extend the pipeline.
 
--   Add Playwright end-to-end tests
+---
 
--   Set up Github Actions or other CI/CD for automated builds and tests
+## Must-Have Checklist
 
-Resources & Support
--------------------
+> 🥉 Bronze - complete all must-haves
 
--   All course lessons, labs, and resources
+- S3 stores raw PDFs, CSVs, and JSONs
 
--   README for deep dives and stretch goal guidance
+- Lambda triggers on upload; calls Textract for PDFs
 
--   1:1 support available - ask an instructor if you're stuck for more than 30 minutes
+- Textract extracts and chunks PDF text
 
-Tips for Success
-----------------
+- Bedrock Llama generates document embeddings
 
--   **Work in small steps:** Build and test each part before moving on.
+- Raw text stored in RDS; embeddings in OpenSearch
 
--   **Stick to the blueprint:** The Figma file and user stories define your target.
+- Glue Crawler catalogs and discovers data schemas
 
--   **Ask questions:** Don't spend too long blocked. Help is here if you need it!
+- Glue ETL normalizes, validates, and loads CSV/JSON into Redshift
 
-### Deliverables
+- Redshift consolidates structured and vector data
 
--   Backend code with CRUD APIs
+- QuickSight dashboards visualize Redshift data
 
--   React app that matches Figma
+- Lambda and BOTO3 automate flows
 
--   Routing and responsive design
+- IAM secures resources
 
--   Four or more tested components
+## Stretch Goals
 
--   Deployed app and public URL
+> 🥈 Silver - complete 1 stretch goal <br> 🥇 Gold - complete all 3
+
+**Push further by adding intelligence and unified user experience:**
+
+- **Hybrid Query Interface:**
+  - Build a single API or UI where users can:
+    - Use semantic search (OpenSearch) for qualitative questions ("Explain our company policies").
+
+    - Use direct SQL queries (Redshift) for quantitative analysis ("Show Q3 sales by region").
+
+- **Intelligence Layer:**
+  - Integrate **Amazon Bedrock LLM** for:
+    - Natural language to SQL translation
+
+    - Contextual response generation
+
+    - Smart routing: automatically decide if a question requires vector search or SQL
+
+- **Enterprise Knowledge API:**
+  - Deliver unified endpoints that blend document retrieval with structured data insights, enabling users to query both with natural language.
+
+## Tips for Success
+
+- **Work in stages:** Build one piece, test it, then connect it to the next.
+
+- **Automate everything:** Use Lambda, Glue, and BOTO3 to keep manual steps to a minimum.
+
+- **Focus on clarity:** Comment your code and document every architectural choice.
+
+- **Ask for help:** Don't spend too long blocked!
