@@ -57,51 +57,59 @@ This document outlines the design and user stories for the Spoonful application.
 
 ### Recipe Management
 
-**User Story 1: Create a Recipe**
-As a recipe creator, I want to add new recipes so I can store and share them.
+**1. Create a Recipe**
+> *As a recipe creator, I want to add new recipes so I can store and share them.*
 
 **Acceptance Criteria:**
-- Form includes title, image, ingredients, and instructions
-- Required field validation
-- Success message on submission
+- Form includes title, image, ingredients, and instructions.
+- Required field validation.
+- Success message on submission.
 
-**User Story 2: View Recipes**
-As any user, I want to view a list of recipes so I can find something to cook.
+---
 
-**Acceptance Criteria:**
-- Recipe cards show key info
-- Click to open full recipe
-- Works for both logged-in and guest users
-
-**User Story 3: Edit a Recipe**
-As a creator, I want to edit my recipe so I can fix or improve it.
+**2. View Recipes**
+> *As any user, I want to view a list of recipes so I can find something to cook.*
 
 **Acceptance Criteria:**
-- "Edit" button appears on creator dashboard
-- Prefilled form loads existing data
-- Save updates the recipe
+- Recipe cards show key info.
+- Click to open full recipe.
+- Works for both logged-in and guest users.
 
-**User Story 4: Delete a Recipe**
-As a creator, I want to delete my recipe so I can manage my content.
+---
+
+**3. Edit a Recipe**
+> *As a creator, I want to edit my recipe so I can fix or improve it.*
 
 **Acceptance Criteria:**
-- "Delete" button on dashboard
-- Confirmation prompt required
-- Removed from all views on success
+- "Edit" button appears on creator dashboard.
+- Prefilled form loads existing data.
+- Save updates the recipe.
+
+---
+
+**4. Delete a Recipe**
+> *As a creator, I want to delete my recipe so I can manage my content.*
+
+**Acceptance Criteria:**
+- "Delete" button on dashboard.
+- Confirmation prompt required.
+- Removed from all views on success.
 
 ### Recipe Discovery
 
-**User Story 5: Search Recipes**
-As a viewer, I want to search by keyword so I can quickly find recipes
+**5. Search Recipes**
+> *As a viewer, I want to search by keyword so I can quickly find recipes.*
 
 **Acceptance Criteria:**
-- Search input visible on browse page
-- Results update dynamically
-- "No match" message if empty
+- Search input visible on browse page.
+- Results update dynamically.
+- "No match" message if empty.
 
-**User Story 6: Guest Browsing**
-As a visitor, I want to browse recipes without logging in
+---
+
+**6. Guest Browsing**
+> *As a visitor, I want to browse recipes without logging in.*
 
 **Acceptance Criteria:**
-- No login required to view recipes
-- Read-only access to recipe content
+- No login required to view recipes.
+- Read-only access to recipe content.
