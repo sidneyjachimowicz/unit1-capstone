@@ -27,7 +27,7 @@ This document outlines the design and user stories for the Spoonful application.
     - **Login** → routes to `/login`
 
 ### Login / Signup
-- **POST /login** and **POST /signup** → Auth flow for creators only.
+- **POST /api/users/login** and **POST /api/users/signup** → Auth flow for creators only.
 - On success, redirect to `/dashboard`
 - Protect `/dashboard` and recipe CRUD routes with auth guard.
 
