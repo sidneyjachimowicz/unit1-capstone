@@ -32,23 +32,23 @@ This document outlines the design and user stories for the Spoonful application.
 - Protect `/dashboard` and recipe CRUD routes with auth guard.
 
 ### Create Recipe
-- **POST /recipes** → Accessible from `/dashboard`
+- **POST /api/recipes** → Accessible from `/dashboard`
 - Form inputs: title, image, ingredients, instructions
 - Validate → Submit → Show success toast/modal
 - Update UI without reload
 
 ### Update Recipe
-- **PUT /recipes/:id** → Click "Edit" on a dashboard item
+- **PUT /api/recipes/:id** → Click "Edit" on a dashboard item
 - Prefill form with existing data
 - On submit: update, show success, refresh list
 
 ### Delete Recipe
-- **DELETE /recipes/:id** → Button in dashboard
+- **DELETE /api/recipes/:id** → Button in dashboard
 - Confirm dialog → On accept, delete and update UI
 - Handle edge cases (404, permission errors)
 
 ### Browse + Search Recipes
-- **GET /recipes** → Publicly accessible
+- **GET /api/recipes** → Publicly accessible
 - List + Search input
 - Query by title/tag/ingredient
 - Click recipe card → route to **GET /recipes/:id**
