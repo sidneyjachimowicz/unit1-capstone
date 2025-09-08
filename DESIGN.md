@@ -34,8 +34,33 @@ This document outlines the design and user stories for the Spoonful application.
 ### Create Recipe
 - **POST /api/recipes** → Accessible from `/dashboard`
 - Form inputs: title, image, ingredients, instructions,tags, description
+- for the image, just use a link in an regular input instead of file upload
 - Validate → Submit → Show success toast/modal
 - Update UI without reload
+
+Example format of data 
+
+```js
+{
+  "title": "Steak baby!",
+  "description": "Crunchy romaine with creamy cashew Caesar dressing.",
+  "image": "https://example.com/images/vegan-caesar.jpg",
+  "ingredients": [
+    { "name": "Romaine lettuce", "quantity": "1 head" },
+    { "name": "Cashews", "quantity": "1/2 cup" },
+    { "name": "Lemon juice", "quantity": "2 tbsp" },
+    { "name": "Dijon mustard", "quantity": "1 tsp" },
+    { "name": "Garlic clove", "quantity": "1" }
+  ],
+  "instructions": [
+    { "step": 1, "description": "Blend the cashews, lemon juice, mustard, and garlic until smooth." },
+    { "step": 2, "description": "Chop romaine lettuce and place in a bowl." },
+    { "step": 3, "description": "Toss with the blended dressing and serve chilled." }
+  ],
+  "tags": ["vegan", "salad", "healthy"]
+
+}
+```
 
 ### Update Recipe
 - **PUT /api/recipes/:id** → Click "Edit" on a dashboard item
