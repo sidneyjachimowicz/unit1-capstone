@@ -6,7 +6,7 @@ You will consume an API rendering it using react. The Figma design and user stor
 
 ### Setup 
 
-- clone this repo and `cd unit1-captsone`
+- clone this repo and `cd unit1-capstone`
 - remove the git repo `rm -rf .git` in
 - initialize a new repo `git init`
 - add and commit `setup starter code`
