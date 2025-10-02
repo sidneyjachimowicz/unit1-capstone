@@ -6,23 +6,12 @@ This directory contains the client-side code for the Spoonful application.
 
 ### Running the Development Server
 
-To start the development server, run the following command. This will build the Docker image and start the container in detached mode.
+To start the development server, run the following command. This will build the Docker image and start the container
 
 ```bash
-docker-compose up --build -d
+docker-compose up --build 
 ```
 
-**When to use:** Use this command to start the client-side development server.
-
-### Stopping the Development Server
-
-To stop the development server, run the following command:
-
-```bash
-docker-compose down
-```
-
-**When to use:** Use this command when you want to stop the running development server.
 
 ### Running Tests
 
