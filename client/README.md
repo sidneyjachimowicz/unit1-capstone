@@ -15,7 +15,7 @@ docker-compose up --build
 if you have trouble getting node modules to update after you install something, rebuild with no-cache
 
 ```
-docker compose up --build --no-cache
+docker-compose up --build --no-cache
 ```
 
 To list all the docker containers running
