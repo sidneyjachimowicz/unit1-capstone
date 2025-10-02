@@ -36,7 +36,7 @@ This document outlines the design and user stories for the Spoonful application.
 ### Create Recipe
 - **POST /api/recipes** → Accessible from `/dashboard`
 - Form inputs: title, image, ingredients, instructions,tags, description
-- for the image, just use a link in an regular input instead of file upload
+- for the image, just use a link (imugur or something) in an regular input instead of file upload
 - Validate → Submit → Show success toast/modal
 - Update UI without reload
 
