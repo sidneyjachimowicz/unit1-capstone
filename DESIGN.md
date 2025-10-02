@@ -20,6 +20,8 @@ This document outlines the design and user stories for the Spoonful application.
 
 ## Key Flows
 
+**Backend server** - is on a `localhost:3000`
+
 ### Landing Page
 - **GET /** → Public entry point.
 - **Show CTA:**
