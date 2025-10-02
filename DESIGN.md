@@ -2,7 +2,7 @@
 
 This document outlines the design and user stories for the Spoonful application.
 
-**Figma Link:** [Spoonful Figma Design](https://www.figma.com/design/4UKIjxdUxW0IodUmodX8j7/Spoonful?node-id=1-2082)
+**Figma Link:** [Spoonful Figma Design](https://www.figma.com/design/4UKIjxdUxW0IodUmodX8j7/Spoonful?node-id=1-2082) for css and design
 
 ## Core Features
 
