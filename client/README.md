@@ -12,7 +12,23 @@ To start the development server, run the following command. This will build the 
 docker-compose up --build 
 ```
 
+if you have trouble getting node modules to update after you install something, rebuild with no-cache
 
+```
+docker compose build --no-cache
+```
+
+To list all the docker containers running
+
+```
+sudo docker ps -a
+```
+
+To remove a container 
+
+```
+sudo docker rm <container_id> <--- note container ID can be retrieve from the command above, will look something like 2781e82e591f
+```
 ### Running Tests
 
 To run the test suite, use the following command:
