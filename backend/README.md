@@ -45,7 +45,7 @@ docker-compose -f docker-compose.dev.yml logs -f mongo
 To remove stopped containers, run the following command:
 
 ```bash
-docker-compose container prune
+docker container prune
 ```
 
 **When to use:** Use this command to clean up your system and remove unused containers. This can help free up disk space.
