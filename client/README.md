@@ -15,7 +15,7 @@ docker-compose up --build
 if you have trouble getting node modules to update after you install something, rebuild with no-cache
 
 ```
-docker-compose up --build --no-cache
+docker-compose up --build --force-recreate
 ```
 
 To list all the docker containers running
@@ -28,6 +28,12 @@ To remove a container
 
 ```
 sudo docker rm <container_id> <--- note container ID can be retrieve from the command above, will look something like 2781e82e591f
+```
+
+or remove all the stopped ones
+
+```
+sudo docker container prune 
 ```
 ### Running Tests
 
