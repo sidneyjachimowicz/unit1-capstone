@@ -4,6 +4,15 @@
 
 You will consume an API rendering it using react. The Figma design and user stories are provided. Your job is to connect the frontend to the backend, , and deliver a working, deployed product.
 
+### Setup 
+
+- clone this repo and `cd unit1-captsone`
+- remove the git repo `rm -rf .git` in
+- initialize a new repo `git init`
+- add and commit `setup starter code`
+- add a github remote to the local repo
+
+
 ## Step 1: Setup Backend
 
 - [backend commands reference](./backend/README.md)
