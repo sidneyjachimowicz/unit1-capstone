@@ -141,3 +141,30 @@ Example format of data
 **Acceptance Criteria:**
 - No login required to view recipes.
 - Read-only access to recipe content.
+
+<hr/>
+
+## AI-Powered Feature (New)
+
+**Backend endpoint:** `POST /api/ai/stream` — proxies a streaming request to Google Gemini. The API key lives only on the backend; the frontend never talks to Gemini directly.
+
+### AI Assistant Flow
+
+- **GET /ai-assistant** → New route, reachable from main navigation, accessible to all users (no auth required)
+- User submits a prompt via a text input
+- Frontend calls `POST /api/ai/stream` with `{ "prompt": "..." }`
+- Response streams back token-by-token and renders progressively in the UI
+- Last 3 prompt/response pairs are kept in session history (client-side state, not persisted)
+
+### User Story
+
+**7. Use the AI Assistant**
+> *As any user, I want to ask the AI assistant a question or request and see a streamed response, so I can get quick help without leaving the app.*
+
+**Acceptance Criteria:**
+- Accessible via its own route (`/ai-assistant`) and linked from navigation
+- Loading state shown while waiting for the first token
+- Error state shown if the request fails
+- Empty prompt is rejected client-side before any request is sent
+- Response renders progressively (token-by-token), not all at once
+- Last 3 prompt/response pairs visible as session history
