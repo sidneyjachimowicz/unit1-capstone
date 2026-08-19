@@ -53,4 +53,4 @@ To create a production build of the application, run the following command:
 docker-compose run --rm react-dev npm run build
 ```
 
-**When to use:** Use this command to bundle the application for deployment. The build artifacts will be located in the `dist` directory.
+**When to use:** This capstone does not require deployment — the app is expected to run locally via `docker-compose up --build` for grading and demo. This command is available if you want to verify your app builds cleanly for production (a good practice regardless), or if you're attempting deployment as a self-directed stretch goal. The build artifacts will be located in the `dist` directory.
