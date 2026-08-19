@@ -12,14 +12,14 @@ To start the backend services, run the following command. This will build the Do
 docker-compose -f docker-compose.dev.yml up --build 
 ```
 
-**When to use:** Use this command when you want to start the backend server for the first time or when you have made changes to the Dockerfile or the backend code.
+**When to use:** Use this command when you want to start the backend server for the first time or when you have made changes to the Dockerfile or the backend code — including after adding the `routes/ai.js` file for the AI-powered feature.
 
 ### Stopping the Backend
 
 To stop the backend services, run the following command:
 
 ```bash
-dctrl + c
+Ctrl + C
 ```
 
 **When to use:** Use this command when you want to stop the running backend services.
@@ -38,7 +38,19 @@ For the database service:
 docker-compose -f docker-compose.dev.yml logs -f mongo
 ```
 
-**When to use:** Use these commands to debug issues or monitor the output of the backend services. The `-f` flag follows the log output.
+**When to use:** Use these commands to debug issues or monitor the output of the backend services — including checking the AI stream endpoint's error logs if a Gemini request fails. The `-f` flag follows the log output.
+
+### Testing the AI Endpoint Directly
+
+Before wiring the AI feature into your React app, confirm the endpoint works on its own:
+
+```bash
+curl -X POST http://localhost:3000/api/ai/stream \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "hello, tell me a fun fact"}'
+```
+
+**When to use:** Use this any time you change `routes/ai.js` or suspect the AI feature isn't working — it's much faster to debug a single `curl` call than a full React component.
 
 ### Pruning Containers
 
@@ -52,4 +64,4 @@ docker container prune
 
 ## Deployment
 
-[TODO: Add deployment commands here]
+Deployment is not part of this capstone. The full application — backend, frontend, and database — is expected to run locally via Docker Compose only.
