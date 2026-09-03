@@ -1,12 +1,25 @@
 .navbar {
   display: flex;
-  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
   padding: 1rem 2rem;
   background-color: var(--color-white);
   border-bottom: 1px solid var(--color-gray-100);
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.navbar a {
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.navbar-links a {
+  color: var(--color-black);
+  font-weight: 600;
+}
+
+.navbar-links a:hover {
   color: var(--color-green-400);
 }

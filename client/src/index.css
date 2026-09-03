@@ -36,7 +36,7 @@
 body {
   margin: 0;
   font-family: var(--font-family);
-  background-color: var(--color-gray-100);
+  background-color: var(--color-yellow-100);
   color: var(--color-black);
 }
 

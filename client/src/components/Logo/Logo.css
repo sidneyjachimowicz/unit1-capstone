@@ -1,0 +1,19 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--color-black);
+  text-decoration: none;
+}
+
+.logo:hover {
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+.logo-icon {
+  color: var(--color-black);
+  flex-shrink: 0;
+}

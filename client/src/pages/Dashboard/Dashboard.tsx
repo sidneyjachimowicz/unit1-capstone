@@ -46,11 +46,7 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-      <h1>Dashboard</h1>
-      <div className="dashboard-actions">
-        <button onClick={logout}>Logout</button>
-        <Link to="/dashboard/new">+ Create New Recipe</Link>
-      </div>
+      <h1>Your Recipes</h1>
 
       {error && <p className="error-text">{error}</p>}
 
@@ -60,20 +56,35 @@ function Dashboard() {
         <div className="dashboard-grid">
           {recipes.map((recipe) => (
             <div key={recipe._id} className="dashboard-card">
-              <h3>{recipe.title}</h3>
-              <p>{recipe.description}</p>
-              <div className="dashboard-card-actions">
-                <Link to={`/dashboard/edit/${recipe._id}`}>
-                  <button className="secondary">Edit</button>
-                </Link>
-                <button className="danger" onClick={() => handleDelete(recipe._id)}>
-                  Delete
-                </button>
+              {recipe.image && <img src={recipe.image} alt={recipe.title} />}
+              <div className="dashboard-card-body">
+                <h3>{recipe.title}</h3>
+                <p>{recipe.description}</p>
+                <div className="dashboard-card-actions">
+                  <Link to={`/dashboard/edit/${recipe._id}`}>
+                    <button className="secondary">Edit</button>
+                  </Link>
+                  <button className="danger" onClick={() => handleDelete(recipe._id)}>
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
       )}
+
+      <div className="dashboard-buttons">
+        <Link to="/dashboard/new">
+          <button>Create Recipe</button>
+        </Link>
+        <Link to="/recipes">
+          <button className="secondary">Browse Recipes</button>
+        </Link>
+        <button className="secondary" onClick={logout}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
