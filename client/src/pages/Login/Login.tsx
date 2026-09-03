@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import './Login.css';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
@@ -31,8 +32,9 @@ function Login() {
 
   return (
     <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+      <h1>Welcome Back!</h1>
+      <p>Sign in to your account</p>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <input
           type="email"
           placeholder="Email"
@@ -51,7 +53,11 @@ function Login() {
           {isLoading ? 'Logging in...' : 'Login'}
         </button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error-text">{error}</p>}
+<Link to="/signup" className="auth-secondary-button">
+  <button type="button" className="secondary full-width">Create an Account</button>
+</Link>
+<Link to="/recipes" className="auth-guest-link">Explore Recipes without logging in</Link>
     </div>
   );
 }

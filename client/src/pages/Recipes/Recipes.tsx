@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import type { Recipe } from '../../types/Recipe';
 import './Recipes.css';
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
@@ -45,6 +46,7 @@ function Recipes() {
 
   return (
     <div className="recipes-page">
+      <Breadcrumb items={[{ label: 'Home', to: '/' }, { label: 'Recipe List' }]} />
       <h1>Browse Recipes</h1>
       <input
         className="search-input"
@@ -61,15 +63,17 @@ function Recipes() {
           {filteredRecipes.map((recipe) => (
             <Link key={recipe._id} to={`/recipes/${recipe._id}`} className="recipe-card">
               <img src={recipe.image} alt={recipe.title} />
-              <div className="recipe-card-body">
-                <h3>{recipe.title}</h3>
-                <p>{recipe.description}</p>
-                {recipe.tags.map((tag) => (
-                  <span key={tag} className="tag">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+             <div className="recipe-card-body">
+  <h3>{recipe.title}</h3>
+  <p>{recipe.description}</p>
+  <div className="tags-row">
+    {recipe.tags.map((tag) => (
+      <span key={tag} className="tag">
+        {tag}
+      </span>
+    ))}
+  </div>
+</div>
             </Link>
           ))}
         </div>

@@ -1,8 +1,8 @@
-// assume user can be logged in right after sign up
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import '../Login/Login.css';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
@@ -32,8 +32,8 @@ function Signup() {
 
   return (
     <div>
-      <h1>Signup</h1>
-      <form onSubmit={handleSubmit}>
+      <h1>Create an Account</h1>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <input
           type="email"
           placeholder="Email"
@@ -49,10 +49,13 @@ function Signup() {
           required
         />
         <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Signing up...' : 'Signup'}
+          {isLoading ? 'Signing up...' : 'Create Account'}
         </button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error-text">{error}</p>}
+<Link to="/login" className="auth-secondary-button">
+  <button type="button" className="secondary full-width">Cancel</button>
+</Link>
     </div>
   );
 }

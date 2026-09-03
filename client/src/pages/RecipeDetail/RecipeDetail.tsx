@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import type { Recipe } from '../../types/Recipe';
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+import './RecipeDetail.css';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
@@ -33,34 +35,35 @@ function RecipeDetail() {
  return (
   <div className="recipe-detail-wrapper">
     <div className="recipe-detail">
-      <Link to="/recipes" className="back-link">&larr; Back to Recipes</Link>
-      <h1>{recipe.title}</h1>
-      {recipe.image && <img src={recipe.image} alt={recipe.title} />}
-      <p>{recipe.description}</p>
+      <Breadcrumb items={[{ label: 'Home', to: '/' }, { label: 'Recipe List', to: '/recipes' }, { label: recipe.title }]} />
+{recipe.image && <img src={recipe.image} alt={recipe.title} />}
+<h1>{recipe.title}</h1>
+<p>{recipe.description}</p>
 
-      <div className="tags-row">
-        {recipe.tags.map((tag) => (
-          <span key={tag} className="tag">
-            {tag}
-          </span>
-        ))}
-      </div>
+<h3>Ingredients</h3>
+<ul>
+  {recipe.ingredients.map((ing, i) => (
+    <li key={i}>
+      {ing.quantity} {ing.name}
+    </li>
+  ))}
+</ul>
 
-      <h3>Ingredients</h3>
-      <ul>
-        {recipe.ingredients.map((ing, i) => (
-          <li key={i}>
-            {ing.quantity} {ing.name}
-          </li>
-        ))}
-      </ul>
+<h3>Instructions</h3>
+<ol>
+  {recipe.instructions.map((inst) => (
+    <li key={inst.step}>{inst.description}</li>
+  ))}
+</ol>
 
-      <h3>Instructions</h3>
-      <ol>
-        {recipe.instructions.map((inst) => (
-          <li key={inst.step}>{inst.description}</li>
-        ))}
-      </ol>
+<h3>Tags</h3>
+<div className="tags-row">
+  {recipe.tags.map((tag) => (
+    <span key={tag} className="tag">
+      {tag}
+    </span>
+  ))}
+</div>
     </div>
   </div>
   );

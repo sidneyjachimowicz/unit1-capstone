@@ -1,0 +1,9 @@
+.breadcrumb {
+  font-size: 14px;
+  color: var(--color-gray-300);
+  margin-bottom: 0.5rem;
+}
+
+.breadcrumb-separator {
+  margin: 0 0.3rem;
+}

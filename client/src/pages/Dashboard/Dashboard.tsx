@@ -11,7 +11,7 @@ function Dashboard() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
-  const { token, userId, logout } = useAuth();
+  const { token, userId } = useAuth();
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -75,16 +75,13 @@ function Dashboard() {
       )}
 
       <div className="dashboard-buttons">
-        <Link to="/dashboard/new">
-          <button>Create Recipe</button>
-        </Link>
-        <Link to="/recipes">
-          <button className="secondary">Browse Recipes</button>
-        </Link>
-        <button className="secondary" onClick={logout}>
-          Logout
-        </button>
-      </div>
+  <Link to="/dashboard/new">
+    <button>Create Recipe</button>
+  </Link>
+  <Link to="/recipes">
+    <button className="secondary">Browse Recipes</button>
+  </Link>
+</div>
     </div>
   );
 }
