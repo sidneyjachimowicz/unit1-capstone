@@ -71,6 +71,13 @@
   gap: 0.4rem;
 }
 
+.view-recipe-link {
+  color: var(--color-green-400);
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 0.4rem;
+}
+
 @media (max-width: 600px) {
   .recipe-card {
     flex-direction: column;

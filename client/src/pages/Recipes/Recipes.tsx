@@ -73,6 +73,7 @@ function Recipes() {
       </span>
     ))}
   </div>
+   <span className="view-recipe-link">View Recipe →</span>
 </div>
             </Link>
           ))}

@@ -21,6 +21,7 @@ function RecipeForm() {
   const [instructions, setInstructions] = useState<Instruction[]>([{ step: 1, description: '' }]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     if (!isEditMode) return;
@@ -86,26 +87,34 @@ function RecipeForm() {
       tags: tags.split(',').map((t) => t.trim()).filter(Boolean),
     };
 
-    try {
-      const headers = { Authorization: `Bearer ${token}` };
+   try {
+  const headers = { Authorization: `Bearer ${token}` };
 
-      if (isEditMode) {
-        await axios.put(`${BACKEND_URL}/api/recipes/${id}`, payload, { headers });
-      } else {
-        await axios.post(`${BACKEND_URL}/api/recipes`, payload, { headers });
-      }
+  if (isEditMode) {
+    await axios.put(`${BACKEND_URL}/api/recipes/${id}`, payload, { headers });
+  } else {
+    await axios.post(`${BACKEND_URL}/api/recipes`, payload, { headers });
+  }
 
-      navigate('/dashboard');
-    } catch (err) {
-      setError('Failed to save recipe. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
+  setShowSuccess(true);
+  setTimeout(() => {
+    navigate('/dashboard');
+  }, 1200);
+} catch (err) {
+  setError('Failed to save recipe. Please try again.');
+} finally {
+  setIsLoading(false);
+}
   };
 
-  return (
+return (
   <div>
     <h1>{isEditMode ? 'Edit Recipe' : 'Create Recipe'}</h1>
+    {showSuccess && (
+      <div className="success-message">
+        {isEditMode ? 'Recipe updated successfully!' : 'Recipe created successfully!'}
+      </div>
+    )}
     <form className="recipe-form" onSubmit={handleSubmit}>
       <input
         type="text"
