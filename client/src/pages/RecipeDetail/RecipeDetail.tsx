@@ -30,18 +30,17 @@ function RecipeDetail() {
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
   if (!recipe) return null;
 
-  return (
-    <div>
-      <Link to="/recipes">&larr; Back to Recipes</Link>
+ return (
+  <div className="recipe-detail-wrapper">
+    <div className="recipe-detail">
+      <Link to="/recipes" className="back-link">&larr; Back to Recipes</Link>
       <h1>{recipe.title}</h1>
-      {recipe.image && (
-        <img src={recipe.image} alt={recipe.title} style={{ maxWidth: '400px' }} />
-      )}
+      {recipe.image && <img src={recipe.image} alt={recipe.title} />}
       <p>{recipe.description}</p>
 
-      <div>
+      <div className="tags-row">
         {recipe.tags.map((tag) => (
-          <span key={tag} style={{ marginRight: '0.5rem', background: '#eee', padding: '0.25rem 0.5rem' }}>
+          <span key={tag} className="tag">
             {tag}
           </span>
         ))}
@@ -63,6 +62,7 @@ function RecipeDetail() {
         ))}
       </ol>
     </div>
+  </div>
   );
 }
 

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import type { Ingredient, Instruction } from '../../types/Recipe';
+import './RecipeForm.css';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
@@ -103,84 +104,84 @@ function RecipeForm() {
   };
 
   return (
-    <div>
-      <h1>{isEditMode ? 'Edit Recipe' : 'Create Recipe'}</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <textarea
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Tags (comma separated)"
-          value={tags}
-          onChange={(e) => setTags(e.target.value)}
-        />
+  <div>
+    <h1>{isEditMode ? 'Edit Recipe' : 'Create Recipe'}</h1>
+    <form className="recipe-form" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <textarea
+        placeholder="Description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Image URL"
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Tags (comma separated)"
+        value={tags}
+        onChange={(e) => setTags(e.target.value)}
+      />
 
-        <h3>Ingredients</h3>
-        {ingredients.map((ing, i) => (
-          <div key={i}>
-            <input
-              type="text"
-              placeholder="Name"
-              value={ing.name}
-              onChange={(e) => handleIngredientChange(i, 'name', e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Quantity"
-              value={ing.quantity}
-              onChange={(e) => handleIngredientChange(i, 'quantity', e.target.value)}
-            />
-            <button type="button" onClick={() => removeIngredient(i)}>
-              Remove
-            </button>
-          </div>
-        ))}
-        <button type="button" onClick={addIngredient}>
-          + Add Ingredient
-        </button>
+      <h3>Ingredients</h3>
+      {ingredients.map((ing, i) => (
+        <div className="form-row" key={i}>
+          <input
+            type="text"
+            placeholder="Name"
+            value={ing.name}
+            onChange={(e) => handleIngredientChange(i, 'name', e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Quantity"
+            value={ing.quantity}
+            onChange={(e) => handleIngredientChange(i, 'quantity', e.target.value)}
+          />
+          <button type="button" className="danger" onClick={() => removeIngredient(i)}>
+            Remove
+          </button>
+        </div>
+      ))}
+      <button type="button" className="add-button" onClick={addIngredient}>
+        + Add Ingredient
+      </button>
 
-        <h3>Instructions</h3>
-        {instructions.map((inst, i) => (
-          <div key={i}>
-            <span>Step {inst.step}: </span>
-            <input
-              type="text"
-              placeholder="Description"
-              value={inst.description}
-              onChange={(e) => handleInstructionChange(i, e.target.value)}
-            />
-            <button type="button" onClick={() => removeInstruction(i)}>
-              Remove
-            </button>
-          </div>
-        ))}
-        <button type="button" onClick={addInstruction}>
-          + Add Step
-        </button>
+      <h3>Instructions</h3>
+      {instructions.map((inst, i) => (
+        <div className="form-row" key={i}>
+          <span>Step {inst.step}:</span>
+          <input
+            type="text"
+            placeholder="Description"
+            value={inst.description}
+            onChange={(e) => handleInstructionChange(i, e.target.value)}
+          />
+          <button type="button" className="danger" onClick={() => removeInstruction(i)}>
+            Remove
+          </button>
+        </div>
+      ))}
+      <button type="button" className="add-button" onClick={addInstruction}>
+        + Add Step
+      </button>
 
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error-text">{error}</p>}
 
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Saving...' : isEditMode ? 'Update Recipe' : 'Create Recipe'}
-        </button>
-      </form>
-    </div>
-  );
+      <button className="submit-button" type="submit" disabled={isLoading}>
+        {isLoading ? 'Saving...' : isEditMode ? 'Update Recipe' : 'Create Recipe'}
+      </button>
+    </form>
+  </div>
+);
 }
 
 export default RecipeForm;

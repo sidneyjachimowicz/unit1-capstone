@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import type { Recipe } from '../../types/Recipe';
 import { useAuth } from '../../context/AuthContext';
+import './Dashboard.css';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
@@ -44,23 +45,31 @@ function Dashboard() {
   if (isLoading) return <p>Loading your recipes...</p>;
 
   return (
-    <div>
+    <div className="dashboard">
       <h1>Dashboard</h1>
-      <button onClick={logout}>Logout</button>
-      <Link to="/dashboard/new">+ Create New Recipe</Link>
+      <div className="dashboard-actions">
+        <button onClick={logout}>Logout</button>
+        <Link to="/dashboard/new">+ Create New Recipe</Link>
+      </div>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error-text">{error}</p>}
 
       {recipes.length === 0 ? (
         <p>You haven't created any recipes yet.</p>
       ) : (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+        <div className="dashboard-grid">
           {recipes.map((recipe) => (
-            <div key={recipe._id} style={{ border: '1px solid #ccc', padding: '1rem', width: '200px' }}>
+            <div key={recipe._id} className="dashboard-card">
               <h3>{recipe.title}</h3>
               <p>{recipe.description}</p>
-              <Link to={`/dashboard/edit/${recipe._id}`}>Edit</Link>
-              <button onClick={() => handleDelete(recipe._id)}>Delete</button>
+              <div className="dashboard-card-actions">
+                <Link to={`/dashboard/edit/${recipe._id}`}>
+                  <button className="secondary">Edit</button>
+                </Link>
+                <button className="danger" onClick={() => handleDelete(recipe._id)}>
+                  Delete
+                </button>
+              </div>
             </div>
           ))}
         </div>

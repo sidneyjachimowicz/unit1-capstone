@@ -14,6 +14,7 @@ function App() {
   return (
     <>
       <Navbar />
+        <main style={{ padding: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/recipes" element={<Recipes />} />
@@ -46,6 +47,7 @@ function App() {
         />
         <Route path="/ai-assistant" element={<AIAssistant />} />
       </Routes>
+      </main>
     </>
   );
 }

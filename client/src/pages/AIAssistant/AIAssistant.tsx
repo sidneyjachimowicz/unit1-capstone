@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './AIAssistant.css';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
@@ -75,38 +76,38 @@ function AIAssistant() {
     }
   };
 
-  return (
-    <div>
-      <h1>AI Assistant</h1>
-      <form onSubmit={handleSubmit}>
-        <textarea
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Ask something..."
-          disabled={isLoading}
-        />
-        <button type="submit" disabled={isLoading || !prompt.trim()}>
-          {isLoading ? 'Generating...' : 'Submit'}
-        </button>
-      </form>
+ return (
+  <div className="ai-assistant">
+    <h1>AI Assistant</h1>
+    <form onSubmit={handleSubmit}>
+      <textarea
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+        placeholder="Ask something..."
+        disabled={isLoading}
+      />
+      <button type="submit" disabled={isLoading || !prompt.trim()}>
+        {isLoading ? 'Generating...' : 'Submit'}
+      </button>
+    </form>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {isLoading && !response && <p>Gemini is thinking...</p>}
-      {response && <pre style={{ whiteSpace: 'pre-wrap' }}>{response}</pre>}
+    {error && <p className="error-text">{error}</p>}
+    {isLoading && !response && <p>Gemini is thinking...</p>}
+    {response && <pre className="ai-response">{response}</pre>}
 
-      {history.length > 0 && (
-        <>
-          <h3>Recent History</h3>
-          {history.map((h, i) => (
-            <div key={i}>
-              <strong>Q:</strong> {h.prompt} <br />
-              <strong>A:</strong> {h.answer}
-            </div>
-          ))}
-        </>
-      )}
-    </div>
-  );
+    {history.length > 0 && (
+      <div className="ai-history">
+        <h3>Recent History</h3>
+        {history.map((h, i) => (
+          <div key={i} className="ai-history-item">
+            <p><strong>Q:</strong> {h.prompt}</p>
+            <p><strong>A:</strong> {h.answer}</p>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+);
 }
 
 export default AIAssistant;

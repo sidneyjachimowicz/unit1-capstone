@@ -1,0 +1,12 @@
+.navbar {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-gray-100);
+  flex-wrap: wrap;
+}
+
+.navbar a {
+  color: var(--color-green-400);
+}
