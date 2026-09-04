@@ -65,6 +65,9 @@ function Recipes() {
               <img src={recipe.image} alt={recipe.title} />
              <div className="recipe-card-body">
   <h3>{recipe.title}</h3>
+  <p className="created-date">
+    Created on {recipe.createdAt ? new Date(recipe.createdAt).toLocaleDateString() : ''}
+  </p>
   <p>{recipe.description}</p>
   <div className="tags-row">
     {recipe.tags.map((tag) => (
