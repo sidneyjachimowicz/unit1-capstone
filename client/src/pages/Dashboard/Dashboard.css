@@ -76,3 +76,10 @@
     flex-direction: column;
   }
 }
+
+.created-date {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--color-gray-300);
+  margin: 0;
+}

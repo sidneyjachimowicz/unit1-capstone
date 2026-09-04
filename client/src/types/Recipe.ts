@@ -16,4 +16,5 @@ export interface Recipe {
   ingredients: Ingredient[];
   instructions: Instruction[];
   tags: string[];
+  createdAt?: string;
 }

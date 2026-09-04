@@ -57,9 +57,12 @@ function Dashboard() {
           {recipes.map((recipe) => (
             <div key={recipe._id} className="dashboard-card">
               {recipe.image && <img src={recipe.image} alt={recipe.title} />}
-              <div className="dashboard-card-body">
-                <h3>{recipe.title}</h3>
-                <p>{recipe.description}</p>
+             <div className="dashboard-card-body">
+  <h3>{recipe.title}</h3>
+  <p className="created-date">
+    Created on {recipe.createdAt ? new Date(recipe.createdAt).toLocaleDateString() : ''}
+  </p>
+  <p>{recipe.description}</p>
                 <div className="dashboard-card-actions">
                   <Link to={`/dashboard/edit/${recipe._id}`}>
                     <button className="secondary">Edit</button>
