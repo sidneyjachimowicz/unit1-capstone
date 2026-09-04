@@ -9,6 +9,7 @@ import Signup from './pages/Signup/Signup';
 import Dashboard from './pages/Dashboard/Dashboard';
 import RecipeForm from './pages/RecipeForm/RecipeForm';
 import AIAssistant from './pages/AIAssistant/AIAssistant';
+import RecipeIdeas from './pages/RecipeIdeas/RecipeIdeas';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/recipes/:id" element={<RecipeDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/recipe-ideas" element={<RecipeIdeas />} />
         <Route
           path="/dashboard"
           element={

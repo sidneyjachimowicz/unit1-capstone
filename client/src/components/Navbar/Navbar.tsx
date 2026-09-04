@@ -16,6 +16,7 @@ function Navbar() {
     <nav className="navbar">
       <Logo />
       <div className="navbar-links">
+        <Link to="/recipe-ideas">Recipe Ideas</Link>
         <Link to="/recipes">Recipes</Link>
         {!token && <Link to="/login">Login</Link>}
         {!token && <Link to="/signup">Signup</Link>}

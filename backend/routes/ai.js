@@ -77,4 +77,72 @@ router.post('/stream', async (req, res) => {
   }
 });
 
+router.post('/recipe-ideas', async (req, res) => {
+  const { ingredients } = req.body;
+
+  if (!ingredients || typeof ingredients !== 'string' || !ingredients.trim()) {
+    return res.status(400).json({ error: 'ingredients is required' });
+  }
+
+  if (!process.env.GEMINI_API_KEY) {
+    console.error('GEMINI_API_KEY is not set');
+    return res.status(500).json({ error: 'AI service is not configured' });
+  }
+
+  const prompt = `I have these ingredients on hand: ${ingredients.trim()}. Suggest one creative recipe I could make using mostly these ingredients. Give the recipe a fun name, a short description, and a simple list of steps.`;
+
+  try {
+    const upstream = await axios({
+      method: 'post',
+      url: `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:streamGenerateContent?alt=sse`,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-goog-api-key': process.env.GEMINI_API_KEY,
+      },
+      data: {
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        generationConfig: { maxOutputTokens: 1024 },
+      },
+      responseType: 'stream',
+    });
+
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+
+    upstream.data.pipe(res);
+
+    upstream.data.on('error', (err) => {
+      console.error('Stream error:', err);
+      if (!res.headersSent) {
+        res.status(500).json({ error: 'Streaming error' });
+      }
+    });
+  } catch (err) {
+    let errorBody = '';
+
+    if (err.response?.data && typeof err.response.data.on === 'function') {
+      try {
+        errorBody = await new Promise((resolve) => {
+          let chunks = '';
+          err.response.data.on('data', (chunk) => (chunks += chunk));
+          err.response.data.on('end', () => resolve(chunks));
+          err.response.data.on('error', () => resolve('(could not read error stream)'));
+        });
+      } catch {
+        errorBody = '(failed to parse error stream)';
+      }
+    } else {
+      errorBody = err.message;
+    }
+
+    console.error('Recipe ideas stream error:', err.response?.status, errorBody);
+
+    if (!res.headersSent) {
+      const status = err.response?.status || 500;
+      res.status(status).json({ error: 'Failed to reach AI service', details: errorBody });
+    }
+  }
+});
+
 module.exports = router;
